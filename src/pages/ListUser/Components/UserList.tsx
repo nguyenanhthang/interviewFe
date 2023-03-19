@@ -7,14 +7,13 @@ import Box from '@mui/material/Box';
 
 const UserList = () => {
     const queryString: { page?: string } = useQueryString();
-    console.log(queryString);
     const page = Number(queryString.page) || 0;
     const limit = 10;
     const ListUser = useQuery({
         queryKey: ['users', page],
         queryFn: () => getUsers(page, limit),
         staleTime: 60 * 1000,
-        cacheTime: 9000
+        cacheTime: 3600 * 1000
     });
     return (
         <Box>
